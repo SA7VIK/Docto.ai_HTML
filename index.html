@@ -8,22 +8,53 @@
     <title>Document</title>
 </head>
 <body>
-    <nav className="navigation">
-        <div className="logo">DOCTO.AI</div>
-        <ul className="nav-links">
+
+    <nav class="navigation">
+        <div class="logo">DOCTO.AI</div>
+        <ul class="nav-links">
           <li class="active">
-            Home
+           <a><span>Home</span></a> 
+          </li>
+          <li >
+            <a><span> Diagnostic Images
+            </span></a> 
           </li>
           <li>
-            Image Analysis
-          </li>
-          <li>
-            Symptom Analysis
+            <a><span>Blood Test</span></a> 
           </li>
         </ul>
-        <div className="sign_up">
-          <button><a href="">SIGN UP</a></button>
+        <div class="sign_up">
+          <button class="btn"><a href="">SIGN UP</a></button>
         </div>
       </nav>
+
+      <div class="home">
+        <div class="features">
+          <h1 class="features-header">
+            Empowering Healthcare with AI-Driven Diagnosis
+          </h1>
+          <div class="features-list">
+            <div class="features-item">
+              <h2 class="features-item-header">Symptom Diagnosis</h2>
+              <p class="features-item-description">
+                Get an accurate diagnosis of your disease by entering your
+                symptoms and getting personalized recommendations.
+              </p>
+            </div>
+            <div class="features-item">
+              <h2 class="features-item-header">Medical Image Analysis</h2>
+              <p class="features-item-description">
+                Our AI-powered model can analyze medical images such as CT scans,
+                X-rays, and MRIs to help with diagnosis.
+              </p>
+            </div>
+          </div>
+          <button class="features-button">Have a Diagnosis</button>
+        </div>
+        <div class="body-image">
+          <img src = "./images/FullFullBody.png" alt = "body"/>
+        </div>
+      </div>
+   
 </body>
 </html>
