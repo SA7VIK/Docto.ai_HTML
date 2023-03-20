@@ -43,7 +43,7 @@ body {
 
 .nav-links li:hover,
 .nav-links li:focus,
-.nav-links li.active {
+.nav-links liactive {
   color: white;
   font-weight: bold;
   border-bottom-color: white;
@@ -164,6 +164,8 @@ body {
 }
 
 .body-image {
+  position: relative;
+  right: -10%;
   justify-content: center;
   margin-left: 40px;
   align-items: center;
