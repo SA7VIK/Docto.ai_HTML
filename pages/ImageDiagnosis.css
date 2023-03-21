@@ -10,6 +10,7 @@ body {
   width: 100%;
   align-items: center;
   vertical-align: middle;
+  margin: 24px;
   margin-left: 64px;
 }
 
@@ -40,7 +41,7 @@ body {
 }
 
 .nav-links li:hover,
-.nav-links li.focus,
+.nav-links li:focus,
 .nav-links li.active {
   color: white;
   border-bottom-color: white;
@@ -51,6 +52,12 @@ body {
   color: gray;
 }
 
+.nav-links li a.active,
+.nav-links li a:hover {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
 .sign_up {
   display: flex;
   flex-direction: row;
@@ -88,58 +95,57 @@ body {
   color: white;
 }
 
-
-.drop-menu {
-  background-color: transparent;
-  width: 63%;
-  margin: 48px auto; /* this will center the div horizontally */
+.diagnoseBody{
+  height: 50%;
 }
 
-.drop-menu p {
-  color: white;
-  text-align: start;
-}
-.drop-menu select {
-  width: 100%;
-  height: 64px;
-  color: #ffffff;
-  background-color: transparent;
-  border: 2px solid white;
-  font-family: "Montserrat", sans-serif;
-  padding-right: 8px;
-  margin: 32px 0px;
-}
-.drop-menu select option {
-  height: 64px;
-  color: white;
-  background-color: #1a1042;
-  font-family: "Montserrat", sans-serif;
-}
-.img-box {
-  width: 100%;
-  height: 164px;
-  color: #ffffff;
-  background-color: transparent;
-  border: 2px solid white;
-  margin: 32px 0px;
-  display: flex;
-  cursor: pointer;
-  font-family: "Montserrat", sans-serif;
-  flex-direction: column;
+.diagnoseBody .body-image {
   justify-content: center;
   align-items: center;
+  height: 100vw;
+  position: relative;
 }
-.btn {
-  width: 100%;
-  height: 54px;
-  color: #ffffff;
-  background-color: rgb(82, 161, 229);
-  border: 2px solid rgb(82, 161, 229);
-  font-family: "Montserrat", sans-serif;
-  cursor: pointer;
-  font-weight: bold;
-  margin: 32px 0px;
+
+.diagnoseBody .full-body img{
+  opacity: 20%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 40%;
 }
-.btn:hover {
-  background-color: rgb(38, 113, 179);
+
+.diagnoseBody .head {
+  opacity: 20%;
+  position: absolute;
+  top: -1%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 5%;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.diagnoseBody .head img{
+  height: 40%;
+}
+
+.diagnoseBody .lungs {
+  opacity: 20%;
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 13%;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.diagnoseBody .lungs img{
+  height: 40%;
+}
+
+.diagnoseBody .head:hover {
+  opacity: 100%;
+}
+
+.diagnoseBody .lungs:hover {
+  opacity: 100%;
 }
