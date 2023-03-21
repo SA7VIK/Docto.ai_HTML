@@ -36,35 +36,17 @@
 
       const disc = [
             {
-              "name": "NonDemented",
-              "description": "This stage refers to individuals who do not show any signs of dementia.",
-              "symptoms": "There are no symptoms associated with this stage of Alzheimer's disease.",
-              "treatment": "There is no specific treatment for this stage of Alzheimer's disease. However, maintaining a healthy lifestyle and engaging in activities that promote mental and physical well-being can help reduce the risk of developing dementia in the future."
+              "name": "MildDemented, This stage refers to individuals who show mild symptoms of dementia, such as confusion and difficulty with problem-solving and planning. Symptoms of mild dementia include increasing forgetfulness, difficulty with problem-solving and planning, and difficulty with daily activities such as managing finances or driving. In addition to medications and cognitive training, individuals with mild dementia may benefit from occupational therapy and other interventions to help maintain independence and improve quality of life. Caregiver support is also important at this stage."
+            },      
+            {
+              "name": "ModerateDemented This stage refers to individuals who show moderate symptoms of dementia, such as significant memory loss, difficulty with daily activities, and changes in behavior. Symptoms of moderate dementia include significant memory loss, difficulty with daily activities such as dressing and bathing, changes in behavior such as agitation or aggression, and difficulty with communication. At this stage, medications may be used to manage symptoms, and individuals may require more intensive care and support from caregivers or healthcare professionals. Palliative care may also be appropriate to manage symptoms and improve quality of life."
             },
             {
-              "name": "VeryMildDemented",
-              "description": "This stage refers to individuals who show very mild symptoms of dementia, such as memory lapses and difficulty with language.",
-              "symptoms": "Symptoms of very mild dementia include forgetfulness, difficulty finding words, and difficulty with tasks that require planning and organization.",
-              "treatment": "There is no cure for Alzheimer's disease, but medications such as cholinesterase inhibitors may be prescribed to help manage symptoms in the early stages of the disease. Cognitive training and other interventions may also be helpful in managing symptoms."
+              "name" : "NonDemented, This stage refers to individuals who do not show any signs of dementia. There are no symptoms associated with this stage of Alzheimer's disease. There is no specific treatment for this stage of Alzheimer's disease. However, maintaining a healthy lifestyle and engaging in activities that promote mental and physical well-being can help reduce the risk of developing dementia in the future."
             },
             {
-              "name": "MildDemented",
-              "description": "This stage refers to individuals who show mild symptoms of dementia, such as confusion and difficulty with problem-solving and planning.",
-              "symptoms": "Symptoms of mild dementia include increasing forgetfulness, difficulty with problem-solving and planning, and difficulty with daily activities such as managing finances or driving.",
-              "treatment": "In addition to medications and cognitive training, individuals with mild dementia may benefit from occupational therapy and other interventions to help maintain independence and improve quality of life. Caregiver support is also important at this stage."
+              "name" : "VeryMildDemented This stage refers to individuals who show very mild symptoms of dementia, such as memory lapses and difficulty with language. Symptoms of very mild dementia include forgetfulness, difficulty finding words, and difficulty with tasks that require planning and organization. There is no cure for Alzheimer's disease, but medications such as cholinesterase inhibitors may be prescribed to help manage symptoms in the early stages of the disease. Cognitive training and other interventions may also be helpful in managing symptoms."
             },
-            {
-              "name": "ModerateDemented",
-              "description": "This stage refers to individuals who show moderate symptoms of dementia, such as significant memory loss, difficulty with daily activities, and changes in behavior.",
-              "symptoms": "Symptoms of moderate dementia include significant memory loss, difficulty with daily activities such as dressing and bathing, changes in behavior such as agitation or aggression, and difficulty with communication.",
-              "treatment": "At this stage, medications may be used to manage symptoms, and individuals may require more intensive care and support from caregivers or healthcare professionals. Palliative care may also be appropriate to manage symptoms and improve quality of life."
-            },
-            {
-              "name": "SevereDemented",
-              "description": "This stage refers to individuals who show severe symptoms of dementia, such as complete loss of memory, inability to communicate, and dependence on others for basic activities of daily living.",
-              "symptoms": "Symptoms of severe dementia include complete loss of memory, inability to communicate, and dependence on others for basic activities of daily living such as eating, dressing, and toileting.",
-              "treatment": "At this stage, the focus is on providing supportive care to manage symptoms and improve quality of life. This may involve medications to manage pain and other symptoms, as well as palliative care and hospice care to provide comfort and support to the individual and their family."
-            }
           ]
 
       const imageInput = document.getElementById('image-input');
@@ -100,7 +82,7 @@
             }
           }
           console.log(txt)
-           window.location.href = './Results.html?data=txt';
+          op.innerHTML = txt.name
         }
       })
 
