@@ -35,12 +35,21 @@
         <option value="option3">MRI</option>
       </select>
 
-      <div class="selected-content">
-        <div class="imgtag">
-          <button class="img-box">Upload images here</button>
-        </div>
-        <button class="btn">Diagnose</button>
-      </div>
+      
     </div>
+
+    <script>
+      const select = document.querySelector('select');
+
+      select.addEventListener('change', () => {
+        const selectedOption = select.value;
+        if (selectedOption === 'option2') {
+          window.location.href = './DiagnoseHomeAL.html';
+        } else if (selectedOption === 'option3') {
+          window.location.href = './DiagnoseHomePne.html';
+        }
+      });
+    </script>
+
   </body>
 </html>
