@@ -5,6 +5,10 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+h2{
+  color: white;
+}
+
 .navigation {
   display: flex;
   width: 100%;
