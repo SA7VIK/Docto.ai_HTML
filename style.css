@@ -43,7 +43,7 @@ body {
 
 .nav-links li:hover,
 .nav-links li:focus,
-.nav-links liactive {
+.nav-links li.active {
   color: white;
   font-weight: bold;
   border-bottom-color: white;
