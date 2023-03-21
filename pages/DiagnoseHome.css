@@ -2,6 +2,11 @@ body {
   background-color: black;
 }
 
+.navigation a span{
+  text-decoration: none;
+  color: #ffffff;
+}
+
 .drop-menu {
   background-color: transparent;
   width: 63%;

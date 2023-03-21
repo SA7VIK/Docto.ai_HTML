@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="DiagnoseHome.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <title>Image Analysis</title>
+  </head>
+  <body>
+
+    <div class="drop-menu">
+      <p>Select a Image you want to diagnose</p>
+      <select>
+        <option value="option1">Select</option>
+        <option value="option2">CT Scan</option>
+        <option value="option3">MRI</option>
+      </select>
+
+      <div class="selected-content">
+        <div class="imgtag" id="image-output">
+          <input type="file" id="image-input" class="img-box">Upload images here</input>
+        </div>
+        <button id="btn" class="btn">Diagnose</button>
+        <h2 id="txt"></h2>
+      </div>
+
+      <script>
+        // disc.alzheimer_types[i].name
+        // disc.alzheimer_types[i].description
+        // disc.alzheimer_types[i].symptoms[].name disc.alzheimer_types[i].symptoms[].description
+        // disc.alzheimer_types[i].treatment[].name disc.alzheimer_types[i].treatment[].description
+        
+        const disc = {
+            "alzheimer_types": [
+              {
+                "name": "MildDemented",
+                "description": "Mild cognitive impairment associated with Alzheimer's disease",
+                "symptoms": [
+                  {
+                    "name": "Memory loss",
+                    "description": "Difficulty remembering new information or recalling previously learned information"
+                  },
+                  {
+                    "name": "Difficulty performing familiar tasks",
+                    "description": "Difficulty performing familiar activities such as preparing meals or doing household chores"
+                  },
+                  {
+                    "name": "Language problems",
+                    "description": "Difficulty finding the right words or understanding what others are saying"
+                  },
+                  {
+                    "name": "Disorientation",
+                    "description": "Getting lost in familiar places or losing track of time"
+                  }
+                ],
+                "treatment": [
+                  {
+                    "name": "Medications",
+                    "description": "Prescription drugs to manage symptoms of Alzheimer's disease, such as cholinesterase inhibitors or memantine"
+                  },
+                  {
+                    "name": "Cognitive training",
+                    "description": "Mental exercises to help improve memory, attention, and other cognitive functions"
+                  },
+                  {
+                    "name": "Lifestyle changes",
+                    "description": "Maintaining a healthy diet, engaging in regular physical activity, and avoiding alcohol and tobacco use"
+                  }
+                ]
+              },
+              {
+                "name": "ModerateDemented",
+                "description": "Moderate cognitive impairment associated with Alzheimer's disease",
+                "symptoms": [
+                  {
+                    "name": "Increased memory loss",
+                    "description": "Forgetting important events or personal information"
+                  },
+                  {
+                    "name": "Personality and behavior changes",
+                    "description": "Changes in mood, behavior, or personality, such as increased anxiety or agitation"
+                  },
+                  {
+                    "name": "Difficulty with daily activities",
+                    "description": "Difficulty with activities of daily living, such as bathing, dressing, or grooming"
+                  },
+                  {
+                    "name": "Problems recognizing family and friends",
+                    "description": "Difficulty recognizing familiar faces or places"
+                  }
+                ],
+                "treatment": [
+                  {
+                    "name": "Medications",
+                    "description": "Prescription drugs to manage symptoms of Alzheimer's disease, such as cholinesterase inhibitors or memantine"
+                  },
+                  {
+                    "name": "Cognitive training",
+                    "description": "Mental exercises to help improve memory, attention, and other cognitive functions"
+                  },
+                  {
+                    "name": "Lifestyle changes",
+                    "description": "Maintaining a healthy diet, engaging in regular physical activity, and avoiding alcohol and tobacco use"
+                  }
+                ]
+              },
+              {
+                "name": "NonDemented",
+                "description": "No cognitive impairment associated with Alzheimer's disease",
+                "symptoms": [
+                  {
+                    "name": "Normal cognitive function",
+                    "description": "No cognitive impairment"
+                  }
+                ],
+                "treatment": [
+                  {
+                    "name": "N/A",
+                    "description": "No treatment necessary"
+                  }
+                ]
+              },
+              {
+                "name": "VeryMildDemented",
+                "description": "Very mild cognitive impairment associated with Alzheimer's disease",
+                "symptoms": [
+                  {
+                    "name": "Mild memory loss",
+                    "description": "Occasional difficulty remembering recent events or conversations"
+                  },
+                  {
+                    "name": "Mild difficulty performing familiar tasks",
+                    "description": "Occasional difficulty with familiar activities such as following a recipe or playing a game"
+                },
+                {
+                  "name": "Mild language problems",
+                  "description": "Occasional difficulty finding the right words or following a conversation"
+                },
+                {
+                  "name": "Mild disorientation",
+                  "description": "Occasional confusion about the day of the week or the month"
+                }
+              ],
+              "treatment": [
+                {
+                  "name": "Medications",
+                  "description": "Prescription drugs to manage symptoms of Alzheimer's disease, such as cholinesterase inhibitors or memantine"
+                },
+                {
+                  "name": "Cognitive training",
+                  "description": "Mental exercises to help improve memory, attention, and other cognitive functions"
+                },
+                {
+                  "name": "Lifestyle changes",
+                  "description": "Maintaining a healthy diet, engaging in regular physical activity, and avoiding alcohol and tobacco use"
+                }
+              ]
+            }
+          ]
+        }
+
+        
+        const imageInput = document.getElementById('image-input');
+          const imageOutput = document.getElementById('image-output');
+          const btn = document.getElementById('btn');
+          const txt = document.getElementById('txt');
+          const img = new Image();
+          
+          imageInput.addEventListener('change', async () => {
+            //const imagePath = 'dog1.png';
+            const file = imageInput.files[0];
+            const imgUrl = URL.createObjectURL(file);
+            img.src = imgUrl;
+            await img.decode();
+})
+          btn.addEventListener('click', async () => {
+            const tensor = tf.browser.fromPixels(img)
+            const expandedTensor = tensor.expandDims();
+            const resizedTensor = tf.image.resizeBilinear(expandedTensor, [224, 224])
+
+            const model = await tf.loadLayersModel('../alzheimer_model_tfjs_model/model.json');
+            const prediction = model.predict(resizedTensor)
+            if (prediction) {
+              prediction.print();
+              console.log(prediction)
+              data = prediction.dataSync()
+              console.log(data)
+              var txtt
+              for(let i=0;i<4;i++){
+              if (data[i] === 1) {
+                txtt = disc[i]
+                break
+              }
+              console.log(txtt)
+              txt.innerText = txtt;
+            }
+            }
+          })
+           
+      </script>
+    </div>
+  </body>
+</html>
